@@ -124,7 +124,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     alignment: Alignment.center,
                     child: Text(
                       "nome: $nome",
-                      style: TextStyle(color: Colors.blue, fontSize: 15),
+                      style: TextStyle(color: Colors.blue, fontSize: 14),
                     ),
                   ),
                 ),
