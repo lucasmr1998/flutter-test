@@ -51,7 +51,12 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
-  List<String> listaNomes = ['Lucas', 'Adriano', 'Jamili', 'Nego Veio'];
+  List<String> listaNomes = [
+    'Lucas Rodrigues',
+    'Adriano Rodrigues',
+    'Jamili Splendor',
+    'Paulo Sergio'
+  ];
   List<String> listaStatus = ['Execução', 'Atrasado', 'Pronto'];
 
   void _incrementCounter() {
@@ -82,6 +87,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
 
       body: ListView(
+        padding: EdgeInsets.only(top: 10, left: 15, right: 15, bottom: 5),
         children: listaNomes.map((nome) => buildCard(nome)).toList(),
       ),
       floatingActionButton: FloatingActionButton(
@@ -112,16 +118,18 @@ class _MyHomePageState extends State<MyHomePage> {
                 padding: EdgeInsets.only(bottom: 20.0),
               ),
               Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Expanded(
                     child: Container(
-                      child: buildName(nome),
+                      child: buildField(buildName(nome), "NAME"),
                     ),
                   ),
-                  Expanded(child: buildStatus()),
-                  Expanded(
-                      child: buildPercentage()
+                  buildField(buildStatus(), "STATUS"),
+                  Padding(
+                    padding: EdgeInsets.only(right: 15),
                   ),
+                  buildField(buildPercentage(), "PROGRESS"),
                 ],
               ),
             ],
@@ -131,19 +139,40 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
+  buildField(Widget widget, String titulo) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Container(
+          child: Text(
+            titulo,
+            style: TextStyle(color: Colors.grey, fontSize: 13),
+          ),
+        ),
+        Padding(
+          padding: EdgeInsets.only(bottom: 5),
+        ),
+        widget,
+      ],
+    );
+  }
+
   buildName(String nome) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Icon(
           Icons.emoji_transportation,
         ),
-        Container(
-          padding: EdgeInsets.only(left: 5),
-          alignment: Alignment.center,
-          child: Text(
-            "$nome",
-            style: TextStyle(color: Colors.black, fontSize: 14),
+        Flexible(
+          child: Container(
+            height: 30,
+            padding: EdgeInsets.only(left: 5),
+            alignment: Alignment.centerLeft,
+            child: Text(
+              "$nome",
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(color: Colors.black, fontSize: 14),
+            ),
           ),
         ),
       ],
@@ -168,7 +197,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   buildStatus() {
     return Container(
-      alignment: Alignment.center,
+      height: 30,
+      alignment: Alignment.centerLeft,
       child: Text(
         "ATRASADO",
         style: TextStyle(color: Colors.red, fontSize: 14),
@@ -177,17 +207,22 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   buildPercentage() {
-    return Container(
-      alignment: Alignment.center,
-      padding: EdgeInsets.all(8),
-      decoration: new BoxDecoration(
-        borderRadius: new BorderRadius.circular(10.0),
-        color: Colors.redAccent,
-      ),
-      child: Text(
-        "21%",
-        style: TextStyle(color: Colors.white, fontSize: 14),
-      ),
+    return Row(
+      children: [
+        Container(
+          height: 30,
+          alignment: Alignment.center,
+          padding: EdgeInsets.only(left: 25, right: 25),
+          decoration: new BoxDecoration(
+            borderRadius: new BorderRadius.circular(10.0),
+            color: Colors.redAccent,
+          ),
+          child: Text(
+            "21%",
+            style: TextStyle(color: Colors.white, fontSize: 14),
+          ),
+        ),
+      ],
     );
   }
 }
