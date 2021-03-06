@@ -52,6 +52,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
   List<String> listaNomes = ['Lucas', 'Adriano', 'Jamili', 'Nego Veio'];
+  List<String> listaStatus = ['Execução', 'Atrasado', 'Pronto'];
 
   void _incrementCounter() {
     setState(() {
@@ -73,12 +74,15 @@ class _MyHomePageState extends State<MyHomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(
+      backgroundColor: Colors.blue,
       appBar: AppBar(
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
         title: Center(child: Text(widget.title)),
       ),
-      body: ListView(
+
+      body:
+      ListView(
         children: listaNomes.map((nome) => buildCard(nome)).toList(),
       ),
       floatingActionButton: FloatingActionButton(
@@ -91,60 +95,79 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Widget buildCard(String nome) {
     return Card(
-      child: Center(
-        child: Column(
-          children: [
-            Padding(padding: EdgeInsets.only(bottom: 15.0)),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Expanded(
-                  child: Container(
-                    decoration: BoxDecoration(
-                      border: Border(
-                        bottom: BorderSide(color: Colors.grey, width: 1),
+        child: Container(
+        padding: EdgeInsets.all(20),
+        child: Center(
+          child: Column(
+            children: [
+              Padding(padding: EdgeInsets.only(bottom: 10.0)),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Expanded(
+                    child: Container(
+                      padding: EdgeInsets.only(bottom:15),
+                      decoration: BoxDecoration(
+                        border: Border(
+                          bottom: BorderSide(color: Colors.grey, width: 0.5),
+                        ),
+                      ),
+                      alignment: Alignment.center,
+                      child: Text(
+                        "Sucess release v2 of our CRM product",
+                        style: TextStyle(color: Colors.blue, fontSize: 18),
                       ),
                     ),
-                    alignment: Alignment.center,
-                    child: Text(
-                      "nome: $nome",
-                      style: TextStyle(color: Colors.blue, fontSize: 15),
+                  ),
+                ],
+              ),
+              Padding(
+                padding: EdgeInsets.only(bottom: 20.0),
+              ),
+              Row(
+                children: [
+                  Icon(
+                    Icons.emoji_transportation,
+                  ),
+                  Expanded(
+                    child: Container(
+                      alignment: Alignment.center,
+                      child: Text(
+                        "$nome",
+                        style: TextStyle(color: Colors.black, fontSize: 14),
+                      ),
                     ),
                   ),
-                ),
-              ],
-            ),
-            Padding(
-              padding: EdgeInsets.only(bottom: 20.0),
-            ),
-            Row(
-              children: [
-                Expanded(
-                  child: Container(
-                    alignment: Alignment.center,
-                    child: Text(
-                      "nome: $nome",
-                      style: TextStyle(color: Colors.blue, fontSize: 14),
+                  Expanded(
+                    child: Container(
+                      alignment: Alignment.center,
+                      child: Text(
+                        "ATRASADO",
+                        style: TextStyle(color: Colors.red, fontSize: 14),
+                      ),
                     ),
                   ),
-                ),
-                Expanded(
-                  child: Container(
-                    alignment: Alignment.center,
-                    child: Text("nome: $nome"),
+                  Expanded(
+                    child: Container(
+                      alignment: Alignment.center,
+                      padding: EdgeInsets.all(8),
+                      decoration: new BoxDecoration(
+                        borderRadius: new BorderRadius.circular(10.0),
+                        color: Colors.redAccent,
+                      ),
+                      child: Text(
+                        "21%",
+                        style: TextStyle(color: Colors.white, fontSize: 14),
+                      ),
+                    ),
                   ),
-                ),
-                Expanded(
-                  child: Container(
-                    alignment: Alignment.center,
-                    child: Text("nome: $nome"),
-                  ),
-                ),
-              ],
-            ),
-          ],
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
+
 }
