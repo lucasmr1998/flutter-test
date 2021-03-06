@@ -81,8 +81,7 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Center(child: Text(widget.title)),
       ),
 
-      body:
-      ListView(
+      body: ListView(
         children: listaNomes.map((nome) => buildCard(nome)).toList(),
       ),
       floatingActionButton: FloatingActionButton(
@@ -95,7 +94,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Widget buildCard(String nome) {
     return Card(
-        child: Container(
+      child: Container(
         padding: EdgeInsets.all(20),
         child: Center(
           child: Column(
@@ -105,19 +104,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Expanded(
-                    child: Container(
-                      padding: EdgeInsets.only(bottom:15),
-                      decoration: BoxDecoration(
-                        border: Border(
-                          bottom: BorderSide(color: Colors.grey, width: 0.5),
-                        ),
-                      ),
-                      alignment: Alignment.center,
-                      child: Text(
-                        "Sucess release v2 of our CRM product",
-                        style: TextStyle(color: Colors.blue, fontSize: 18),
-                      ),
-                    ),
+                    child: buildTitulo(),
                   ),
                 ],
               ),
@@ -126,40 +113,14 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               Row(
                 children: [
-                  Icon(
-                    Icons.emoji_transportation,
-                  ),
                   Expanded(
                     child: Container(
-                      alignment: Alignment.center,
-                      child: Text(
-                        "$nome",
-                        style: TextStyle(color: Colors.black, fontSize: 14),
-                      ),
+                      child: buildName(nome),
                     ),
                   ),
+                  Expanded(child: buildStatus()),
                   Expanded(
-                    child: Container(
-                      alignment: Alignment.center,
-                      child: Text(
-                        "ATRASADO",
-                        style: TextStyle(color: Colors.red, fontSize: 14),
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: Container(
-                      alignment: Alignment.center,
-                      padding: EdgeInsets.all(8),
-                      decoration: new BoxDecoration(
-                        borderRadius: new BorderRadius.circular(10.0),
-                        color: Colors.redAccent,
-                      ),
-                      child: Text(
-                        "21%",
-                        style: TextStyle(color: Colors.white, fontSize: 14),
-                      ),
-                    ),
+                      child: buildPercentage()
                   ),
                 ],
               ),
@@ -170,4 +131,63 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
+  buildName(String nome) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Icon(
+          Icons.emoji_transportation,
+        ),
+        Container(
+          padding: EdgeInsets.only(left: 5),
+          alignment: Alignment.center,
+          child: Text(
+            "$nome",
+            style: TextStyle(color: Colors.black, fontSize: 14),
+          ),
+        ),
+      ],
+    );
+  }
+
+  buildTitulo() {
+    return Container(
+      padding: EdgeInsets.only(bottom: 15),
+      decoration: BoxDecoration(
+        border: Border(
+          bottom: BorderSide(color: Colors.grey, width: 0.5),
+        ),
+      ),
+      alignment: Alignment.center,
+      child: Text(
+        "Sucess release v2 of our CRM product",
+        style: TextStyle(color: Colors.blue, fontSize: 18),
+      ),
+    );
+  }
+
+  buildStatus() {
+    return Container(
+      alignment: Alignment.center,
+      child: Text(
+        "ATRASADO",
+        style: TextStyle(color: Colors.red, fontSize: 14),
+      ),
+    );
+  }
+
+  buildPercentage() {
+    return Container(
+      alignment: Alignment.center,
+      padding: EdgeInsets.all(8),
+      decoration: new BoxDecoration(
+        borderRadius: new BorderRadius.circular(10.0),
+        color: Colors.redAccent,
+      ),
+      child: Text(
+        "21%",
+        style: TextStyle(color: Colors.white, fontSize: 14),
+      ),
+    );
+  }
 }
