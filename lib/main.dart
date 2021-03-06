@@ -52,10 +52,10 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
   List<String> listaNomes = [
-    'Lucas Rodrigues',
-    'Adriano Rodrigues',
-    'Jamili Splendor',
-    'Paulo Sergio'
+    'Lucas',
+    'Adriano',
+    'Jamili',
+    'Paulo'
   ];
   List<String> listaStatus = ['Execução', 'Atrasado', 'Pronto'];
 
@@ -127,7 +127,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                   buildField(buildStatus(), "STATUS"),
                   Padding(
-                    padding: EdgeInsets.only(right: 15),
+                    padding: EdgeInsets.only(right: 35),
                   ),
                   buildField(buildPercentage(), "PROGRESS"),
                 ],
@@ -190,7 +190,7 @@ class _MyHomePageState extends State<MyHomePage> {
       alignment: Alignment.center,
       child: Text(
         "Sucess release v2 of our CRM product",
-        style: TextStyle(color: Colors.blue, fontSize: 18),
+        style: TextStyle(fontSize: 18),
       ),
     );
   }
@@ -212,9 +212,9 @@ class _MyHomePageState extends State<MyHomePage> {
         Container(
           height: 30,
           alignment: Alignment.center,
-          padding: EdgeInsets.only(left: 25, right: 25),
+          padding: EdgeInsets.only(left: 20, right: 20),
           decoration: new BoxDecoration(
-            borderRadius: new BorderRadius.circular(10.0),
+            borderRadius: new BorderRadius.circular(7.0),
             color: Colors.redAccent,
           ),
           child: Text(
